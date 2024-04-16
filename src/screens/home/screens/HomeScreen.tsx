@@ -5,7 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Image,
+ 
   TouchableOpacity
 } from 'react-native';
 
@@ -14,6 +14,9 @@ import  CarouselVideoScreen from '../components/CarouselVideo';
 import  CarouselScreen from '../components/Carousel';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { NavigationRoutes } from '../../../components/types';
+import News from '../../../screens/home/images/homeScreen/news-1.svg'
+import News2 from '../../../screens/home/images/homeScreen/news-2.svg'
+import News3 from '../../../screens/home/images/homeScreen/news-3.svg'
 
 
 const HomeScreen: React.FC = () => {
@@ -30,6 +33,7 @@ const HomeScreen: React.FC = () => {
         <View style={styles.mainSection}>
           
           <CarouselVideoScreen/>
+      
           <View>
             <Text style={styles.title}>Latest news</Text>
             <TouchableOpacity onPress={onItemPress} activeOpacity={1} style={styles.newsItem}>
@@ -37,49 +41,49 @@ const HomeScreen: React.FC = () => {
                 <Text style={styles.itemSubtitle}>Pathways</Text>
                 <Text style={styles.itemtitle}>Rabbitohs NRL squad for Elimination Final against Roosters</Text>
               </View>
-              <Image source={require('../images/homeScreen/news-1.png')}  style={styles.itemImage}/>
+              <News/>
             </TouchableOpacity>
             <TouchableOpacity onPress={onItemPress} activeOpacity={1}style={styles.newsItem}>
               <View style={styles.itemContext}>
                 <Text style={styles.itemSubtitle}>Pathways</Text>
                 <Text style={styles.itemtitle}>Rabbitohs Pathways Endure Tough</Text>
               </View>
-              <Image source={require('../images/homeScreen/news-2.png')}  style={styles.itemImage}/>
+              <News2/>
             </TouchableOpacity>
             <TouchableOpacity onPress={onItemPress} activeOpacity={1} style={styles.newsItem}>
               <View style={styles.itemContext}>
                 <Text style={styles.itemSubtitle}>Pathways</Text>
                 <Text style={styles.itemtitle}>Rabbitohs Pathways Endure Tough</Text>
               </View>
-              <Image source={require('../images/homeScreen/news-3.png')}  style={styles.itemImage}/>
+              <News3/>
             </TouchableOpacity>
           </View>
 
           <View style={styles.discoverSection}>
             <Text style={styles.title}>Discover</Text>
             <View style={styles.discoverContent}>
-            <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-1.png')}  style={styles.itemImage2}/>
+            <View style={styles.discoverItem}>   
+              <News   width={155} height={155} />
+              <Text style={styles.itemtitle}>Game Day Hub</Text>             
+            </View>
+            <View style={styles.discoverItem}> 
+              <News2 width={155} height={155}/>            
+              <Text style={styles.itemtitle}>Game Day Hub</Text>             
+            </View>
+            <View style={styles.discoverItem}>  
+              <News3 width={155} height={155}/>           
+              <Text style={styles.itemtitle}>Game Day Hub</Text>             
+            </View>
+            <View style={styles.discoverItem}> 
+              <News width={155} height={155}/>            
               <Text style={styles.itemtitle}>Game Day Hub</Text>             
             </View>
             <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-2.png')}  style={styles.itemImage2}/>
+              <News2 width={155} height={155}/> 
               <Text style={styles.itemtitle}>Game Day Hub</Text>             
             </View>
             <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-3.png')}  style={styles.itemImage2}/>
-              <Text style={styles.itemtitle}>Game Day Hub</Text>             
-            </View>
-            <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-1.png')}  style={styles.itemImage2}/>
-              <Text style={styles.itemtitle}>Game Day Hub</Text>             
-            </View>
-            <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-2.png')}  style={styles.itemImage2}/>
-              <Text style={styles.itemtitle}>Game Day Hub</Text>             
-            </View>
-            <View style={styles.discoverItem}>             
-              <Image source={require('../images/homeScreen/news-3.png')}  style={styles.itemImage2}/>
+              <News3 width={155} height={155}/> 
               <Text style={styles.itemtitle}>Game Day Hub</Text>             
             </View>
             </View>
@@ -135,10 +139,7 @@ const styles = StyleSheet.create({
     padding: 6,
   },
 
-  itemImage:{
-    width:120,
-    height:120
-  },
+ 
   itemContext:{
     width:150,
     margin:10
@@ -159,10 +160,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     marginTop:16,
   },
-  itemImage2:{
-    width:155,
-    height:155
-  },
+ 
   discoverItem:{
 
   },

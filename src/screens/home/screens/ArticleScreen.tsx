@@ -4,26 +4,22 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  ImageBackground,
-  Image, 
+  SafeAreaView, 
   ScrollView,
   
 } from 'react-native';
 
 import { colors } from '../../../components/Colors';
+
 import { ArticleData } from '../../../components/types';
+import ArticleImage from '../images/videoArticle/image-3.svg'
+import Logo from '../images/videoArticle/logo.svg'
+import ArticleImage2 from '../images/videoArticle/image-4.svg'
+import QuotationIcon from '../images/videoArticle/icon-quotation.svg';
 
 const articleData: ArticleData = {
   title: "Rabbitohs rue missed opportunities in last-ditch",
   subtitle: "Sponsored by:",
- 
-  images: [
-    require('../images/videoArticle/image-3.png'), 
-    require('../images/videoArticle/logo.png'),
-    require('../images/videoArticle/image-4.png'),
-    require('../images/videoArticle/icon-quotation.png')
-  ],
   subtitleItem: "South Sydney Rabbitohs",
   titleItem: "The Rabbitohs have fallen short in the dying stages in the grand final rematch against Penrith, falling 26-22 at Accor Stadium.",
   textItem: "Leading by two points heading into the final five minutes, a late penalty and try with less than two to go effectively ended South Sydney’s top-four hopes.",
@@ -42,27 +38,28 @@ const Articlerscreen: React.FC = ()=> {
   const renderItem = ()=> {
     return (
       <View style={styles.wrap}>
-        <ImageBackground source={articleData.images[0]} style={styles.background}>
-          <Text style={styles.title}>{articleData.title}</Text>
-          <View style={styles.wrapConent}>
-            <Text style={styles.subtitle}>{articleData.subtitle}</Text>
-            <Image source={articleData.images[1]}/>
-          </View>
-        </ImageBackground>
+        <ArticleImage  width={'100%'} preserveAspectRatio="xMidYMid slice" />
+      <View style={styles.overlay}>
+        <Text style={styles.title}>{articleData.title}</Text>
+        <View style={styles.wrapContent}>
+          <Text style={styles.subtitle}>{articleData.subtitle}</Text>
+          <Logo />
+        </View>
+      </View>
         <View style={styles.wrapItem}>
           <Text style={styles.subtitleItem}>{articleData.subtitleItem}</Text>
           <Text style={styles.titleItem}>{articleData.titleItem}</Text>
           <Text style={styles.textItem}>{articleData.textItem}</Text>
           <Text style={styles.textItem}>{articleData.textItemTwo}</Text>
-          <Image source={articleData.images[2]} style={styles.image}/>
+          <ArticleImage2 style={styles.image}/>
           <Text style={styles.imageTitle}>{articleData.imageTitle}</Text>
           <Text style={styles.textItem}>{articleData.textItemThree}</Text>
           <Text style={styles.textItem}>{articleData.textItemFour}</Text>
-          <Image source={articleData.images[2]} style={styles.image}/>
+          <ArticleImage2 style={styles.image}/>
           <Text style={styles.imageTitle}>{articleData.imageTitle}</Text>
           <Text style={styles.textItem}>{articleData.textItemFive}</Text>
           <View style={styles.wrapQuote}>
-          <Image source={articleData.images[3]}  />
+          <QuotationIcon/>
             <Text style={styles.textQuote}>{articleData.quote.text}</Text>
             <Text style={styles.titleQuote}>{articleData.quote.author}</Text>
             <View style={styles.separator}></View>
@@ -85,22 +82,22 @@ const styles = StyleSheet.create({
     flex: 1,
         
   },
+
+  overlay: {
+    ...StyleSheet.absoluteFillObject, 
+    marginTop:250,
+    justifyContent:'flex-start', 
+    alignItems: 'center', 
+  },
   wrap:{
     marginBottom:25
   },
-  
-  background: {
-    justifyContent:'flex-end',
-    width: '100%',
-    height:360,
-    alignItems:'center',
 
- },
 
-  wrapConent:{
+  wrapContent:{
     flexDirection:'row',
     justifyContent:'flex-end',
-    marginLeft:"40%"
+    marginLeft:"55%"
   },
 
   title:{
@@ -110,7 +107,8 @@ const styles = StyleSheet.create({
   },
   subtitle:{
     fontSize:11,
-    color:colors.white
+    color:colors.white,
+    marginRight:10
   },
 
   wrapItem:{

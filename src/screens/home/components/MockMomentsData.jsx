@@ -1,4 +1,9 @@
+
+// import { ReactComponent as Rectangle68 } from '../images/moments/rectangle68.svg';
+
+
 export const mockMomentsData = [
+    // { id: 1, image: Rectangle68 },
     { id: 1, image: require('../images/moments/rectangle68.png') },
     { id: 2, image: require('../images/moments/rectangle1.png') },
     { id: 3, image: require('../images/moments/rectangle2.png') },

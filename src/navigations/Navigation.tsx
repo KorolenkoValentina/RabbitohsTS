@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
-const MyTabs =()=> {
+const MyTabs = (): JSX.Element => {
   
   return (
    
@@ -95,7 +95,7 @@ const  MyStack=()=> {
   );
 };
 
-export default function Navigator() {
+const Navigator: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // useFocusEffect(
@@ -135,6 +135,7 @@ export default function Navigator() {
     </NavigationContainer>
   );
 }
+export default Navigator;
 
 
 

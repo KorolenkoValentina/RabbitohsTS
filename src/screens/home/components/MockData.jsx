@@ -65,7 +65,7 @@ export const mockBacksData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -159,7 +159,7 @@ export const mockBacksData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '30' 
           },
           attack: {
@@ -253,7 +253,7 @@ export const mockBacksData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -347,7 +347,7 @@ export const mockBacksData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -449,7 +449,7 @@ export const mockForwardData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -544,7 +544,7 @@ export const mockForwardData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -638,7 +638,7 @@ export const mockForwardData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '30' 
           },
           attack: {
@@ -732,7 +732,7 @@ export const mockForwardData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
@@ -826,7 +826,7 @@ export const mockForwardData = [
           },
           kicking: {
             forcedDropOuts: '2', 
-            GoalConversionRate: '-', 
+            goalConversionRate: '-', 
             tries: '20' 
           },
           attack: {
