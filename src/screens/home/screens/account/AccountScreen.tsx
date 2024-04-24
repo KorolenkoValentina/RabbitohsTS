@@ -52,37 +52,37 @@ const AccountScreen : React.FC = () => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
 
   const onPressProfile = () => {
-    navigation.navigate(NavigationRoutes.PROFILE);
+    navigation.navigate({ name: NavigationRoutes.PROFILE , params: {} });
   };
 
   const onPressPurchases  = () => {
-    navigation.navigate(NavigationRoutes.PURCHASES);
+    navigation.navigate({ name: NavigationRoutes.PURCHASES, params: {} });
   };
 
   const onPressBenefits = () => {
-    navigation.navigate(NavigationRoutes.MY_BENEFITS);
+    navigation.navigate({ name: NavigationRoutes.MY_BENEFITS, params: {} });
   };
 
   const onPressRegistrations = () => {
-    navigation.navigate(NavigationRoutes.REGISTRATIONS )
+    navigation.navigate({ name: NavigationRoutes.REGISTRATIONS, params: {} } )
   };
   const onPressNotifications = () => {
-    navigation.navigate(NavigationRoutes.NOTIFICATIONS)
+    navigation.navigate({ name: NavigationRoutes.NOTIFICATIONS, params: {} })
   };
   const onPressPassword = () => {
-    navigation.navigate(NavigationRoutes.UPDATE_PASSWORD)
+    navigation.navigate({ name: NavigationRoutes.UPDATE_PASSWORD, params: {} })
   };
 
 
   const onPressSupport = () => {
-    navigation.navigate(NavigationRoutes.HELP_AND_SUPPORT )
+    navigation.navigate({ name: NavigationRoutes.HELP_AND_SUPPORT , params: {} })
   };
 
   const onPressLogout = async ()  => {
     const userData = await AsyncStorage.getItem('currentUser');
     console.log('User data found in AsyncStorage:', userData);
     await clearSessionData()
-    navigation.navigate(NavigationRoutes.LOG_IN);
+    navigation.navigate({ name: NavigationRoutes.LOG_IN, params: {} });
   
 
   };

@@ -1,4 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RoundData } from './DrawLadderTypes';
 export enum NavigationRoutes {
     ARTICLE = 'Article',
     SIGN_UP = 'Sign Up',
@@ -28,23 +29,28 @@ export enum NavigationRoutes {
 
 }
 
-
+export type RouteParamsList = {
+   roundData?: RoundData, timeComponent?: JSX.Element 
+};
 
 export type DrawLadderStackParamList = {
     [NavigationRoutes.DRAW_LADDER]: undefined;
     [NavigationRoutes.LADDER]: undefined;
     [NavigationRoutes.MATCH]: undefined;
     [NavigationRoutes.ARTICLE]: undefined;
-    [NavigationRoutes.DETAILS_STATS]: { roundData: any, timeComponent: JSX.Element };
-    [NavigationRoutes.TEAM_LIST]: { roundData: any, timeComponent: JSX.Element };
-    [NavigationRoutes.TEAM_STATS]: { roundData: any, timeComponent: JSX.Element };
-    [NavigationRoutes.PLAYER_STATS]: { roundData: any, timeComponent: JSX.Element };
+    [NavigationRoutes.DETAILS_STATS]: RouteParamsList ;
+    [NavigationRoutes.TEAM_LIST]: RouteParamsList ;
+    [NavigationRoutes.TEAM_STATS]: RouteParamsList ;
+    [NavigationRoutes.PLAYER_STATS]: RouteParamsList ;
 };
 type DrawLadderScreenNavigationProp = NativeStackNavigationProp<DrawLadderStackParamList>;
 
 export  interface DrawLadderStackParamListScreenProps {
   navigation: DrawLadderScreenNavigationProp;
 }
+
+
+
 
 type AccountStackParamList = {
     [NavigationRoutes.ACCOUNT]: undefined;
@@ -60,18 +66,21 @@ export  interface AccountScreenProps {
   navigation: AccountScreenNavigationProp;
 }
 
+export type RouteParams = {
+  item?: { fullName: string, type: string };
+};
+
 export type TeamStackParamList = {
-    [NavigationRoutes.TEAMS]: undefined;
-    [NavigationRoutes.DETAILS_PLAYER]: { item: { fullName: string, type: string } };
-    [NavigationRoutes.VIEW]: { item: { fullName: string, type: string } };
+  [NavigationRoutes.TEAMS]: undefined;
+  [NavigationRoutes.DETAILS_PLAYER]: RouteParams;
+  [NavigationRoutes.VIEW]: RouteParams;
 };
 
 type TeamScreenNavigationProp = NativeStackNavigationProp<TeamStackParamList>;
 
-export  interface TeamtScreenProps {
+export interface TeamScreenProps {
   navigation: TeamScreenNavigationProp;
 }
-
 
 export interface ProfileScreenProps {
     navigation: any;
@@ -82,4 +91,7 @@ export  interface GenderSelectionScreenProps {
     navigation: any;
     route: any;
 }
-  
+export type DetailsPlayerScreenRouteProps = {
+  navigation: any;
+  route: any; 
+};

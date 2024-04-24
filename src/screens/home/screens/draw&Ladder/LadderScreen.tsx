@@ -28,7 +28,7 @@ const LadderScreen : React.FC<LadderScreenProps> = ({ route }) => {
   const [selectedSection, setSelectedSection] = useState<string>('Ladder');
   
 
-  const { mockBacksYears } = route.params;
+  const { mockBacksYears } = route!.params;
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
 
@@ -137,7 +137,7 @@ const LadderScreen : React.FC<LadderScreenProps> = ({ route }) => {
       onSectionChange={(section: string) => {
         if (section === 'Draw') {
             setSelectedSection('Draw');
-            navigation.navigate(NavigationRoutes.DRAW_LADDER);
+            navigation.navigate({name:NavigationRoutes.DRAW_LADDER, params:{}});
         } 
       }}
       />

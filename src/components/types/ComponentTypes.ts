@@ -1,4 +1,4 @@
-import {ImageSourcePropType } from 'react-native';
+import { Section } from "./DrawLadderTypes";
 
 export interface ItemCarousel {
     id: string;

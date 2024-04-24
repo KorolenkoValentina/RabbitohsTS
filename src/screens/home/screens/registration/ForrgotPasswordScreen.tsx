@@ -38,7 +38,7 @@ export default function ForgotPasswordScreen(): JSX.Element {
     };
     
     const navigateToLogIn = () => {
-        navigation.navigate(NavigationRoutes.LOG_IN);
+        navigation.navigate({name:NavigationRoutes.LOG_IN, params: {} });
     };
 
     // const isEmailValid = (email) => {

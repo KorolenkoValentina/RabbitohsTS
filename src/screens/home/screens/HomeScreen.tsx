@@ -23,7 +23,8 @@ const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
   
   const onItemPress = () => {
-    navigation.navigate(NavigationRoutes.ARTICLE);
+    navigation.navigate({ name: NavigationRoutes.ARTICLE, params: {} });
+
   };
 
   const renderItem = (): JSX.Element => {

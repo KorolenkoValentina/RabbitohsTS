@@ -69,8 +69,8 @@ const CarouselVideoScreen: React.FC = () => {
       } else if (result.action === Share.dismissedAction) {
         console.log('Share dismissed');
       }
-    } catch (error) {
-      console.error('Error sharing:', error.message);
+    } catch (error: any) {
+      console.error('Error sharing:', (error as Error).message);
     }
   };
 
@@ -91,7 +91,7 @@ const CarouselVideoScreen: React.FC = () => {
         sliderWidth={width}
         itemWidth={width / 3}
         loop={true} 
-        onSnapToItem={(index) => setSelectedId(index)}
+        onSnapToItem={(index:any) => setSelectedId(index)}
       />       
      
     </SafeAreaView>

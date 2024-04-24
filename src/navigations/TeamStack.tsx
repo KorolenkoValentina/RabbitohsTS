@@ -15,14 +15,10 @@ import DetailsPlayerscreen from '../screens/home/screens/team/DetailsPlayerScree
 import PlayerInfoStatsScreen from '../screens/home/screens/team/PlayerInfoStats';
 import {colors} from '../components/Colors'
 import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
+import { NavigationRoutes, TeamScreenProps, RouteParams  } from '../components/types/NavigationTypes';
 
-import { NavigationRoutes, TeamtScreenProps,TeamStackParamList } from '../components/types/NavigationTypes';
 
-
-type DetailsPlayerScreenRouteProps = NativeStackScreenProps<TeamStackParamList, NavigationRoutes.DETAILS_PLAYER>;
-type PlayerInfoStatsScreenRouteProps = NativeStackScreenProps<TeamStackParamList, NavigationRoutes.VIEW>;
-
-const TeamStack: React.FC<TeamtScreenProps> = () => {
+const TeamStack: React.FC<TeamScreenProps> = () => {
  
   
   const TeamStack = createNativeStackNavigator();
@@ -52,7 +48,7 @@ const TeamStack: React.FC<TeamtScreenProps> = () => {
         
       <TeamStack.Screen 
       name={NavigationRoutes.DETAILS_PLAYER} component={DetailsPlayerscreen} 
-      options={({ route, navigation }: DetailsPlayerScreenRouteProps) => ({
+      options={({ route, navigation }: { route: { params?: RouteParams }, navigation: any }) => ({
         headerStyle: {
           backgroundColor: colors.green, 
         },
@@ -65,15 +61,15 @@ const TeamStack: React.FC<TeamtScreenProps> = () => {
       
         headerTitle: () => (
           <View style={styles.wrap}>
-            <Text style={styles.title}>{route.params.item.fullName}</Text>
-            <Text style={styles.subtitle}>{route.params.item.type}</Text>
+            <Text style={styles.title}>{route.params?.item?.fullName}</Text>
+            <Text style={styles.subtitle}>{route.params?.item?.type}</Text>
           </View>
         ),
       })}/>
 
       <TeamStack.Screen 
       name={NavigationRoutes.VIEW} component={PlayerInfoStatsScreen} 
-      options={({ route, navigation }: PlayerInfoStatsScreenRouteProps) => ({
+      options={({ route, navigation }: { route: { params?: RouteParams }, navigation: any }) => ({
         headerBackVisible: false,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -82,8 +78,8 @@ const TeamStack: React.FC<TeamtScreenProps> = () => {
         ),
         headerTitle: () => (
           <View style={styles.wrap}>
-            <Text style={[styles.title, { color: 'black' }]}>{route.params.item.fullName}</Text>
-            <Text style={[styles.subtitle, { color: 'black' }]}>{route.params.item.type}</Text>
+            <Text style={[styles.title, { color: 'black' }]}>{route.params?.item?.fullName}</Text>
+            <Text style={[styles.subtitle, { color: 'black' }]}>{route.params?.item?.type}</Text>
           </View>
         ),
       })}/>

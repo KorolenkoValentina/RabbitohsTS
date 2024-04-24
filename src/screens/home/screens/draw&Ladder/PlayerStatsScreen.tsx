@@ -20,7 +20,7 @@ const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
   const [activeSection, setActiveSection] = useState('Player Stats')
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
-  const { roundData, timeComponent } = route.params;
+  const { roundData, timeComponent } = route!.params;
   
   const { teams } = roundData || { teams: [] };
   const team1 = teams[0];
@@ -48,40 +48,70 @@ const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
   
   const maxTacklesBacksTeam1 = findPlayerWithMaxStat(team1.players?.backs || [], 'tackles');
   const maxTacklesForwardsTeam1 = findPlayerWithMaxStat(team1.players?.forwards || [], 'tackles');
-  const maxTacklesTeam1 = maxTacklesBacksTeam1?.tackles > maxTacklesForwardsTeam1?.tackles ? maxTacklesBacksTeam1 : maxTacklesForwardsTeam1;
+  
+  const maxTacklesTeam1 = maxTacklesBacksTeam1 && maxTacklesForwardsTeam1
+  ? (maxTacklesBacksTeam1.tackles || 0) > (maxTacklesForwardsTeam1.tackles || 0)
+    ? maxTacklesBacksTeam1
+    : maxTacklesForwardsTeam1
+  : null;
 
   const maxTacklesBacksTeam2 = findPlayerWithMaxStat(team2.players?.backs || [], 'tackles');
   const maxTacklesForwardsTeam2 = findPlayerWithMaxStat(team2.players?.forwards || [], 'tackles');
-  const maxTacklesTeam2 = maxTacklesBacksTeam2?.tackles > maxTacklesForwardsTeam2?.tackles ? maxTacklesBacksTeam2 : maxTacklesForwardsTeam2;
+  const maxTacklesTeam2 = maxTacklesBacksTeam2 && maxTacklesForwardsTeam2
+    ? (maxTacklesBacksTeam2.tackles || 0) > (maxTacklesForwardsTeam2.tackles || 0)
+      ? maxTacklesBacksTeam2
+      : maxTacklesForwardsTeam2
+    : null;
 
 
   const maxRunMetresBacksTeam1 = findPlayerWithMaxStat(team1.players?.backs || [], 'runMetres');
   const maxRunMetresForwardsTeam1 = findPlayerWithMaxStat(team1.players?.forwards || [], 'runMetres');
-  const maxRunMetresTeam1 = maxRunMetresBacksTeam1?.runMetres > maxRunMetresForwardsTeam1?.runMetres ? maxRunMetresBacksTeam1 : maxRunMetresForwardsTeam1;
+  const maxRunMetresTeam1 = maxRunMetresBacksTeam1 && maxRunMetresForwardsTeam1
+  ? (maxRunMetresBacksTeam1.runMetres || 0) > (maxRunMetresForwardsTeam1.runMetres || 0)
+    ? maxRunMetresBacksTeam1
+    : maxRunMetresForwardsTeam1
+  : null;
 
   const maxRunMetresBacksTeam2 = findPlayerWithMaxStat(team2.players?.backs || [], 'runMetres');
   const maxRunMetresForwardsTeam2 = findPlayerWithMaxStat(team2.players?.forwards || [], 'runMetres');
-  const maxRunMetresTeam2 = maxRunMetresBacksTeam2?.runMetres > maxRunMetresForwardsTeam2?.runMetres ? maxRunMetresBacksTeam2 : maxRunMetresForwardsTeam2;
-  
+  const maxRunMetresTeam2 = maxRunMetresBacksTeam2 && maxRunMetresForwardsTeam2
+    ? (maxRunMetresBacksTeam2.runMetres || 0) > (maxRunMetresForwardsTeam2.runMetres || 0)
+      ? maxRunMetresBacksTeam2
+      : maxRunMetresForwardsTeam2
+  : null;
   
 
   const maxLineBreaksBacksTeam1 = findPlayerWithMaxStat(team1.players?.backs || [], 'lineBreaks');
   const maxLineBreaksForwardsTeam1 = findPlayerWithMaxStat(team1.players?.forwards || [], 'lineBreaks');
-  const maxLineBreaksTeam1 = maxLineBreaksBacksTeam1?.runMetres > maxLineBreaksForwardsTeam1?.runMetres ? maxLineBreaksBacksTeam1 : maxLineBreaksForwardsTeam1;
+  const maxLineBreaksTeam1 = maxLineBreaksBacksTeam1 && maxLineBreaksForwardsTeam1
+    ? (maxLineBreaksBacksTeam1.lineBreaks || 0) > (maxLineBreaksForwardsTeam1.lineBreaks || 0)
+      ? maxLineBreaksBacksTeam1
+      : maxLineBreaksForwardsTeam1
+  : null;
 
   const maxLineBreaksBacksTeam2 = findPlayerWithMaxStat(team2.players?.backs || [], 'lineBreaks');
   const maxLineBreaksForwardsTeam2 = findPlayerWithMaxStat(team2.players?.forwards || [], 'lineBreaks');
-  const maxLineBreaksTeam2 = maxLineBreaksBacksTeam2?.runMetres > maxLineBreaksForwardsTeam2?.runMetres ? maxLineBreaksBacksTeam2 : maxLineBreaksForwardsTeam2;
-
+  const maxLineBreaksTeam2 = maxLineBreaksBacksTeam2 && maxLineBreaksForwardsTeam2
+    ? (maxLineBreaksBacksTeam2.lineBreaks || 0) > (maxLineBreaksForwardsTeam2.lineBreaks || 0)
+      ? maxLineBreaksBacksTeam2
+      : maxLineBreaksForwardsTeam2
+  : null;
 
   const maxFantasyPointsBacksTeam1 = findPlayerWithMaxStat(team1.players?.backs || [], 'fantasyPoints');
   const maxFantasyPointsForwardsTeam1 = findPlayerWithMaxStat(team1.players?.forwards || [], 'fantasyPoints');
-  const maxFantasyPointsTeam1 = maxFantasyPointsBacksTeam1?.runMetres > maxFantasyPointsForwardsTeam1?.runMetres ? maxFantasyPointsBacksTeam1 : maxFantasyPointsForwardsTeam1;
+  const maxFantasyPointsTeam1 = maxFantasyPointsBacksTeam1 && maxFantasyPointsForwardsTeam1
+    ? (maxFantasyPointsBacksTeam1.fantasyPoints || 0) > (maxFantasyPointsForwardsTeam1.fantasyPoints || 0)
+      ? maxFantasyPointsBacksTeam1
+      : maxFantasyPointsForwardsTeam1
+  : null;
 
   const maxFantasyPointsBacksTeam2 = findPlayerWithMaxStat(team2.players?.backs || [], 'fantasyPoints');
   const maxFantasyPointsForwardsTeam2 = findPlayerWithMaxStat(team2.players?.forwards || [], 'fantasyPoints');
-  const maxFantasyPointsTeam2 = maxFantasyPointsBacksTeam2?.runMetres > maxFantasyPointsForwardsTeam2?.runMetres ? maxFantasyPointsBacksTeam2 : maxFantasyPointsForwardsTeam2;
-    
+  const maxFantasyPointsTeam2 = maxFantasyPointsBacksTeam2 && maxFantasyPointsForwardsTeam2
+    ? (maxFantasyPointsBacksTeam2.fantasyPoints || 0) > (maxFantasyPointsForwardsTeam2.fantasyPoints || 0)
+      ? maxFantasyPointsBacksTeam2
+      : maxFantasyPointsForwardsTeam2
+  : null;
   
   const PlayerItem: React.FC = () => {
     return (
@@ -91,18 +121,26 @@ const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
         <View style={styles.wrapItem}>
         
           <View style={[styles.itemfLeft,{backgroundColor:team1.color }]}>
+          {maxTacklesTeam1 && (
+            <>
             <Image source={maxTacklesTeam1.imageTeam} style={styles.player1}/>
             <View style={styles.textContent}>
               <Text style={styles.titleItem}>{ maxTacklesTeam1.fullName}</Text>
               <Text style={styles.subtitle}>{maxTacklesTeam1.tackles}</Text>
             </View> 
+            </>
+          )}
            </View>
           <View style={[styles.itemfRight,{backgroundColor:team2.color }]}> 
+          {maxTacklesTeam2 && (
+            <>
             <View style={styles.textContent}>
               <Text style={styles.titleItem}>{ maxTacklesTeam2.fullName}</Text>
               <Text style={styles.subtitle}>{maxTacklesTeam2.tackles}</Text>
             </View>
             <Image source={maxTacklesTeam2.imageTeam} style={styles.player2}/>
+            </>
+          )}
           </View>
           
         </View>
@@ -110,55 +148,80 @@ const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
         <View style={styles.wrapItem}>
       
           <View style={[styles.itemfLeft,{backgroundColor:team1.color }]}> 
-          <Image source={maxRunMetresTeam1.imageTeam} style={styles.player1}/>
-            <View style={styles.textContent}>
-              <Text style={styles.titleItem}>{ maxRunMetresTeam1.fullName}</Text>
-              <Text style={styles.subtitle}>{maxRunMetresTeam1.fantasyPoints}</Text>
-            </View>
+            {maxRunMetresTeam1 && (
+            <>
+              <Image source={maxRunMetresTeam1.imageTeam} style={styles.player1}/>
+              <View style={styles.textContent}>
+                <Text style={styles.titleItem}>{ maxRunMetresTeam1.fullName}</Text>
+                <Text style={styles.subtitle}>{maxRunMetresTeam1.fantasyPoints}</Text>
+              </View>
+            </>
+          )}
           </View>
           <View style={[styles.itemfRight,{backgroundColor:team2.color }]}> 
-            <View style={styles.textContent}>
-              <Text style={styles.titleItem}>{ maxRunMetresTeam2.fullName}</Text>
-              <Text style={styles.subtitle}>{maxRunMetresTeam2.fantasyPoints}</Text>
-            </View>
-            <Image source={maxRunMetresTeam2.imageTeam} style={styles.player2}/>
+            {maxRunMetresTeam2 && (
+            <>
+              <View style={styles.textContent}>
+                <Text style={styles.titleItem}>{ maxRunMetresTeam2.fullName}</Text>
+                <Text style={styles.subtitle}>{maxRunMetresTeam2.fantasyPoints}</Text>
+              </View>
+              <Image source={maxRunMetresTeam2.imageTeam} style={styles.player2}/>
+            </>
+            )}
           </View>
         </View>
         <Text style={styles.title}>MOST LINE BREAKS</Text>
         <View style={styles.wrapItem}>
       
           <View style={[styles.itemfLeft,{backgroundColor:team1.color }]}> 
-          <Image source={maxLineBreaksTeam1.imageTeam} style={styles.player1}/>
-            <View style={styles.textContent}>
-              <Text style={styles.titleItem}>{ maxLineBreaksTeam1.fullName}</Text>
-              <Text style={styles.subtitle}>{maxLineBreaksTeam1.lineBreaks}</Text>
-            </View>
+            {maxLineBreaksTeam1 && (
+            <>
+              <Image source={maxLineBreaksTeam1.imageTeam} style={styles.player1}/>
+                <View style={styles.textContent}>
+                  <Text style={styles.titleItem}>{ maxLineBreaksTeam1.fullName}</Text>
+                  <Text style={styles.subtitle}>{maxLineBreaksTeam1.lineBreaks}</Text>
+                </View>
+            </>
+            )}
           </View>
           <View style={[styles.itemfRight,{backgroundColor:team2.color }]}> 
-            <View style={styles.textContent}>
-              <Text style={styles.titleItem}>{ maxLineBreaksTeam2.fullName}</Text>
-              <Text style={styles.subtitle}>{maxLineBreaksTeam2.lineBreaks}</Text>
-            </View>
-            <Image source={maxLineBreaksTeam2.imageTeam} style={styles.player2}/>
+            {maxLineBreaksTeam2 && (
+            <>
+              <View style={styles.textContent}>
+                <Text style={styles.titleItem}>{ maxLineBreaksTeam2.fullName}</Text>
+                <Text style={styles.subtitle}>{maxLineBreaksTeam2.lineBreaks}</Text>
+              </View>
+              <Image source={maxLineBreaksTeam2.imageTeam} style={styles.player2}/>
+            </>
+            )}
           </View>
         </View>
         <Text style={styles.title}>MOST FANTASY POINTS</Text>
         <View style={styles.wrapItem}>
       
           <View style={[styles.itemfLeft,{backgroundColor:team1.color }]}> 
-          <Image source={maxFantasyPointsTeam1.imageTeam} style={styles.player1}/>
+            {maxFantasyPointsTeam1  && (
+            <>
+            <Image source={maxFantasyPointsTeam1.imageTeam} style={styles.player1}/>
             <View style={styles.textContent}>
               <Text style={styles.titleItem}>{ maxFantasyPointsTeam1.fullName}</Text>
               <Text style={styles.subtitle}>{maxFantasyPointsTeam1.fantasyPoints}</Text>
             </View>
+            </>
+            )}
           </View>
           <View style={[styles.itemfRight,{backgroundColor:team2.color }]}> 
+            {maxFantasyPointsTeam2 && (
+            <>
             <View style={styles.textContent}>
               <Text style={styles.titleItem}>{maxFantasyPointsTeam2.fullName}</Text>
               <Text style={styles.subtitle}>{maxFantasyPointsTeam2.fantasyPoints}</Text>
             </View>
             <Image source={maxFantasyPointsTeam2.imageTeam} style={styles.player2}/>
+            </>
+            )}
           </View>
+          
         </View>
       </View>
     );
@@ -168,19 +231,19 @@ const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <Switcher
-          sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
+          sections={[Section.PlayByPlay, Section.TeamList, Section.TeamStats, Section.PlayerStats]}
           activeSection={activeSection}
-          onSectionChange={(section: Section) => {
+          onSectionChange={(section: string) => {
             setActiveSection(section);
     
           switch (section) {
-            case 'Play by play':
+            case Section.PlayByPlay:
               navigation.navigate(NavigationRoutes.DETAILS_STATS,{roundData, timeComponent});
             break;
-            case 'Team List':
+            case Section.TeamList:
               navigation.navigate(NavigationRoutes.TEAM_LIST,{roundData, timeComponent});
             break;
-            case 'Team Stats':
+            case Section.TeamStats:
               navigation.navigate(NavigationRoutes.TEAM_STATS, {roundData, timeComponent});
             break;
       

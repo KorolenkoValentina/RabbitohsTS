@@ -14,8 +14,9 @@ export  interface YearData {
   year: string;
   rounds: { [key: string]: RoundData };
 }
+
 export interface LadderScreenProps {
-  route: {
+  route?: {
     params: {
       mockBacksYears: YearData[];
     };
@@ -33,7 +34,7 @@ export interface MatchScreenProps {
 }
 
 export interface PlayerStatsScreenProps {
-  route: {
+  route?: {
     params: {
       roundData: RoundData;
       timeComponent: JSX.Element;
@@ -43,7 +44,7 @@ export interface PlayerStatsScreenProps {
 
 
 export interface TeamListScreenProps {
-  route: {
+  route?: {
     params: {
       roundData: RoundData;
       timeComponent: JSX.Element;
@@ -52,7 +53,7 @@ export interface TeamListScreenProps {
 }
 
 export  interface TeamStatsScreenProps {
-  route: {
+  route?: {
     params: {
       roundData: RoundData;
       timeComponent: JSX.Element;
@@ -104,7 +105,7 @@ interface MatchOfficial {
 }
 
 export interface Team {
-    image: any;
+    image:any;
     title: string;
     color: string;
     goals?: number ;

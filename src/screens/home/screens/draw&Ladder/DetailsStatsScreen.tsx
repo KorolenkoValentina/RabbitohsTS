@@ -18,13 +18,13 @@ import {ErrorIcon, RegbyBallIcon, GoalMadeIcon, RestartIcon, MetresIcon, LinesIc
 
 
 
-const DetailsStatsScreen: React.FC<DetailsStatsScreenProps> = ({ route }) => {
+const DetailsStatsScreen: React.FC<{ route: any }> = ({ route }) => {
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
 
   const [activeSection, setActiveSection] = useState('Play by play');
   const { roundData, timeComponent } = route.params;
-  const { teams } = roundData;
+  const { teams } = roundData ;
   const team1 = teams[0];
   const team2 = teams[1];
 
@@ -93,7 +93,7 @@ const DetailsStatsScreen: React.FC<DetailsStatsScreenProps> = ({ route }) => {
                 <Text style={[styles.subtitle,{ color: colors.white }]}>{roundData.pointfield.command} </Text>
                 <Text style={[styles.title,{ color: colors.white }]}>{roundData.pointfield.goalMade} </Text>
                 </View>
-                <Image source={team2.players.backs[0].image} style={styles.player}/>
+                <Image source={team2.players?.backs[0].image} style={styles.player}/>
               </View>
               
             </View>              
@@ -142,7 +142,7 @@ const DetailsStatsScreen: React.FC<DetailsStatsScreenProps> = ({ route }) => {
                 <Text style={[styles.subtitle ,{ color: colors.white }]}>{roundData.pointfield2.command} </Text>
                 <Text style={[styles.title,{ color: colors.white }]}>{roundData.pointfield2.goalMade} </Text>
                 </View>
-                <Image source={team1.players.backs[0].image}  style={styles.player}/>
+                <Image source={team1.players?.backs[0].image}  style={styles.player}/>
               </View>
               
             </View>              
@@ -227,25 +227,22 @@ const DetailsStatsScreen: React.FC<DetailsStatsScreenProps> = ({ route }) => {
       
       
        <Switcher
-          sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
-          activeSection={activeSection}
-          onSectionChange={(section: Section) => {
+           sections={[Section.PlayByPlay, Section.TeamList, Section.TeamStats, Section.PlayerStats]}
+           activeSection={activeSection}
+           onSectionChange={(section: string) => {
             setActiveSection(section);
-    
           switch (section) {
-            case 'Team List':
-              navigation.navigate(NavigationRoutes.TEAM_LIST,{roundData, timeComponent});
-            break;
-            case 'Team Stats':
-              navigation.navigate(NavigationRoutes.TEAM_STATS, {roundData, timeComponent});
-            break;
-            case 'Player Stats':
-              navigation.navigate(NavigationRoutes.PLAYER_STATS, {roundData, timeComponent});
-            break;
-      
+            case Section.TeamList:
+              navigation.navigate(NavigationRoutes.TEAM_LIST, { roundData, timeComponent });
+              break;
+            case Section.TeamStats:
+              navigation.navigate(NavigationRoutes.TEAM_STATS, { roundData, timeComponent });
+              break;
+            case Section.PlayerStats:
+              navigation.navigate(NavigationRoutes.PLAYER_STATS, { roundData, timeComponent });
+              break;
             default:
-        
-           break;
+              break;
           }
         }}
         />

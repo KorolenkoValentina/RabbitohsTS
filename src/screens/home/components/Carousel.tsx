@@ -69,8 +69,8 @@ const CarouseVideolScreen: React.FC = () => {
       } else if (result.action === Share.dismissedAction) {
         console.log('Share dismissed');
       }
-    } catch (error) {
-      console.error('Error sharing:', error.message);
+    } catch (error: any) {
+      console.error('Error sharing:', (error as Error).message);
     }
   };
 
@@ -105,7 +105,7 @@ const CarouseVideolScreen: React.FC = () => {
         renderItem={renderItemCarousel}
         sliderWidth={width}
         itemWidth={width / 1}
-        onSnapToItem={(index) => setSelectedId(index)}
+        onSnapToItem={(index:any) => setSelectedId(index)}
 
       /> 
       {renderPagination()}      

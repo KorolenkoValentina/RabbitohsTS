@@ -69,7 +69,7 @@ export default function SignUpScreen(): JSX.Element {
         console.log('User data stored successfully:', userData);
       await AsyncStorage.setItem(`userId_${email}`, userId); 
        Alert.alert('Account created successfully!');
-      navigation.navigate(NavigationRoutes.LOG_IN);
+      navigation.navigate({name:NavigationRoutes.LOG_IN,  params: {} });
     } catch (error) {
       console.error('Error saving data:', error);
       
@@ -88,7 +88,7 @@ export default function SignUpScreen(): JSX.Element {
 
 
   const navigateToLogIn = (): void => {
-    navigation.navigate(NavigationRoutes.LOG_IN);
+    navigation.navigate({name:NavigationRoutes.LOG_IN, params: {} });
   };
     
 

@@ -102,7 +102,7 @@ const Switcher: React.FC<SwitcherProps> = ({ sections, activeSection, onSectionC
     return (
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
             <View style={styles.sectionSwitcher}>
-                {sections.map((section, index) => (
+                {sections.map((section:string, index:number) => (
                     <TouchableOpacity key={index} onPress={() => onSectionChange(section)}>
                         <View style={[styles.sectionButton, activeSection === section && styles.activeSection]}>
                             <Text style={[styles.sectionText, activeSection === section && styles.activeSectionText]}>{section}</Text>

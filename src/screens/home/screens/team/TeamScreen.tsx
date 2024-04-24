@@ -23,6 +23,7 @@ interface PlayerListProps {
   data: PlayerItem[];
   item: PlayerItem;
   
+  
 }
 
 

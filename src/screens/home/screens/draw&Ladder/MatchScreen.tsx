@@ -27,14 +27,14 @@ import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 import { RoundData, MatchScreenProps } from '../../../../components/types/DrawLadderTypes';
 import Location from '../../images/location.svg'
 
-const MatchScreen: React.FC<MatchScreenProps> = ({ route }) => {
+const MatchScreen: React.FC<{ route: any }> = ({ route }) => {
   
   const { roundData, roundInfo, timeComponent  } = route.params;
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
   
   const onItemPress = () => {
-    navigation.navigate(NavigationRoutes.ARTICLE);
+    navigation.navigate({ name: NavigationRoutes.ARTICLE, params: {} });
   };
 
   const handleDetailsStats =(roundData: RoundData, roundInfo: string, timeComponent: JSX.Element )=>{

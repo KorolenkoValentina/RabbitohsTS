@@ -38,7 +38,7 @@ export default function  SignUpScreen (): JSX.Element {
 
 
   const navigateToLogIn = () => {
-    navigation.navigate(NavigationRoutes.LOG_IN);
+    navigation.navigate({name:NavigationRoutes.LOG_IN, params: {} });
   };
     
 

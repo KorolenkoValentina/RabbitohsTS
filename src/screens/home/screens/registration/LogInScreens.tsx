@@ -19,6 +19,8 @@ import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
 import {  UserData } from '../../../../components/types/types';
 import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 import { saveSessionData , getSessionData} from '../../../../utils/storage';
+
+
 const LogInScreen: React.FC<{ route: any }> = ({ route }) => {
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -43,19 +45,20 @@ const LogInScreen: React.FC<{ route: any }> = ({ route }) => {
    
             if (sessionData) {
     
-            navigation.navigate(NavigationRoutes.HOME);
+            navigation.navigate({name:NavigationRoutes.HOME, params:{} });
             return;
             }
 
             const userData = await AsyncStorage.getItem(`userData_${email}`);
-            const parsedUserData: UserData | null = JSON.parse(userData);
+
+            const parsedUserData: UserData | null = JSON.parse(userData || '{}');
             console.log('User data from storage:', parsedUserData);
-            if (parsedUserData.password === password) {
+            if (parsedUserData && parsedUserData.password === password) {
             Alert.alert('Successful login!');
             await saveSessionData(email, userData);
             await AsyncStorage.setItem('currentUser', JSON.stringify(parsedUserData));
                 console.log('Logged in user:', parsedUserData.firstName); 
-            navigation.navigate(NavigationRoutes.HOME);
+            navigation.navigate({name:NavigationRoutes.HOME, params:{} });
             }   else {
                 Alert.alert('Incorrect password!');
                 }
@@ -67,11 +70,11 @@ const LogInScreen: React.FC<{ route: any }> = ({ route }) => {
     
     
     const navigateToSignUp = () => {
-        navigation.navigate(NavigationRoutes.SIGN_UP );
+        navigation.navigate({name:NavigationRoutes.SIGN_UP, params:{} } );
     };
 
     const navigateToPassword = () => {
-        navigation.navigate(NavigationRoutes.FORGOT_PASSWORD);
+        navigation.navigate({name:NavigationRoutes.FORGOT_PASSWORD, params:{} });
     };
 
 

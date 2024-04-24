@@ -21,11 +21,14 @@ import TeamStatsScreen from '../screens/home/screens/draw&Ladder/TeamStatsScreen
 import {colors} from '../components/Colors'
 import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
 import { NavigationRoutes } from '../components/types/NavigationTypes';
-import {DrawLadderStackParamListScreenProps, DrawLadderStackParamList } from '../components/types/NavigationTypes';
+import {DrawLadderStackParamListScreenProps, DrawLadderStackParamList,  RouteParamsList } from '../components/types/NavigationTypes';
+import { RouteProp } from '@react-navigation/native';
 
-
-
-type DetailsStatsScreenRouteProps = NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.DETAILS_STATS>;
+interface DetailsStatsScreenRouteProps {
+  route: RouteProp<DrawLadderStackParamList, NavigationRoutes.DETAILS_STATS>;
+  navigation: any;
+}
+// type DetailsStatsScreenRouteProps = NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.DETAILS_STATS>;
 
 const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
   
@@ -95,7 +98,8 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
 
       <DrawLadderStack.Screen 
         name={NavigationRoutes.DETAILS_STATS} component={DetailsStatsScreen} 
-        options={({ route, navigation }: DetailsStatsScreenRouteProps) => ({
+        options={({ route, navigation }: { route: { params?: RouteParamsList }, navigation: any }) => ({
+          
           headerBackVisible: false,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -104,11 +108,12 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
           ),
           headerTitle: () => (
             <View style={styles.wrapCommands}>
-            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
-            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
-            {route.params.timeComponent}
-            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
-            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+            <Image source={route.params?.roundData?.teams[0].image} style={styles.image} />
+          
+            {route.params?.roundData?.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params?.timeComponent}
+            {route.params?.roundData?.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params?.roundData?.teams[1].image} style={styles.image} />
               
           </View>
           ),
@@ -117,7 +122,7 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
 
       <DrawLadderStack.Screen 
         name={NavigationRoutes.TEAM_LIST} component={TeamListScreen} 
-        options={({ route, navigation }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_LIST>) => ({
+        options={({ route, navigation }: { route: { params?: RouteParamsList }, navigation: any }) => ({
           headerBackVisible: false,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -126,11 +131,11 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
           ),
           headerTitle: () => (
             <View style={styles.wrapCommands}>
-            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
-            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
-            {route.params.timeComponent}
-            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
-            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+            <Image source={route.params?.roundData?.teams[0].image} style={styles.image} />            
+            {route.params?.roundData?.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params?.timeComponent}
+            {route.params?.roundData?.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params?.roundData?.teams[1].image} style={styles.image} />
               
           </View>
           ),
@@ -139,7 +144,7 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
       />
        <DrawLadderStack.Screen 
         name={NavigationRoutes.TEAM_STATS} component={TeamStatsScreen} 
-        options={({ route , navigation}: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_STATS>) => ({
+        options={({ route, navigation }: { route: { params?: RouteParamsList }, navigation: any }) => ({
           headerBackVisible: false,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -148,11 +153,11 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
           ),
           headerTitle: () => (
             <View style={styles.wrapCommands}>
-            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
-            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
-            {route.params.timeComponent}
-            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
-            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+            <Image source={route.params?.roundData?.teams[0].image} style={styles.image} />            
+            {route.params?.roundData?.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params?.timeComponent}
+            {route.params?.roundData?.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params?.roundData?.teams[1].image} style={styles.image} />
               
           </View>
           ),
@@ -161,7 +166,7 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
       />
       <DrawLadderStack.Screen 
         name={NavigationRoutes.PLAYER_STATS} component={PayerStatsScreen} 
-        options={({ route, navigation }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.PLAYER_STATS>) => ({
+        options={({ route, navigation }: { route: { params?: RouteParamsList }, navigation: any }) => ({
           headerBackVisible: false,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -170,11 +175,11 @@ const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
           ),
           headerTitle: () => (
             <View style={styles.wrapCommands}>
-            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
-            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
-            {route.params.timeComponent}
-            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
-            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+            <Image source={route.params?.roundData?.teams[0].image} style={styles.image} />            
+            {route.params?.roundData?.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params?.timeComponent}
+            {route.params?.roundData?.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params?.roundData?.teams[1].image} style={styles.image} />
               
           </View>
           ),

@@ -48,26 +48,33 @@ const PlayerListTwo = ({ data }: { data: Player[] }) => {
   );
 };
 
+type SectionListData<ItemT, SectionT> = {
+  title: string;
+  data: ReadonlyArray<ItemT>;
+} & SectionT;
+
+
 const TeamListScreen : React.FC<TeamListScreenProps> = ({ route }) => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
   const [activeSection, setActiveSection] = useState('Team List');
-  const { roundData, timeComponent } = route.params;
+  const { roundData, timeComponent } = route!.params;
   const { teams } = roundData;
   const team1 = teams[0];
   const team2 = teams[1];
   
-  const sections = [
-    {
-      title: "Backs",
-      data: team1.players.backs.map((player, index) => ({ left: player, right: team2.players.backs[index] })),
-    },
-    {
-      title: "Forwards",
-      data: team1.players.forwards.map((player, index) => ({ left: player, right: team2.players.forwards[index] })),
-    },
-    
-
-  ];
+  const sections: ReadonlyArray<SectionListData<
+  { left: Player; right: Player | undefined },
+  { title: string; data: ReadonlyArray<{ left: Player; right: Player | undefined }> }
+>> = [
+  {
+    title: "Backs",
+    data: team1.players?.backs.map((player, index) => ({ left: player, right: team2.players?.backs[index] })) || [],
+  },
+  {
+    title: "Forwards",
+    data: team1.players?.forwards.map((player, index) => ({ left: player, right: team2.players?.forwards[index] })) || [],
+  },
+];
 
   const List = () => {
 
@@ -76,9 +83,9 @@ const TeamListScreen : React.FC<TeamListScreenProps> = ({ route }) => {
             <Text style={styles.title}>Coaches</Text>
             <View style={styles.item}>
               <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-evenly'}}>
-                <Text style={styles.titleItem}>{team1.coach.fullName}</Text>
-                <Text style={styles.wrapText}>{team1.coach.type}</Text>
-                <Text style={styles.titleItem}>{team2.coach.fullName}</Text>
+                <Text style={styles.titleItem}>{team1.coach?.fullName}</Text>
+                <Text style={styles.wrapText}>{team1.coach?.type}</Text>
+                <Text style={styles.titleItem}>{team2.coach?.fullName}</Text>
               </View>  
             </View>
             <Text style={styles.title}>Match Officials</Text>
@@ -110,21 +117,21 @@ const TeamListScreen : React.FC<TeamListScreenProps> = ({ route }) => {
     <ScrollView style={styles.container}>
      
        <Switcher
-          sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
+          sections={[Section.PlayByPlay, Section.TeamList, Section.TeamStats, Section.PlayerStats]}
           activeSection={activeSection}
-          onSectionChange={(section: Section) => {
+          onSectionChange={(section: string) => {
             setActiveSection(section);
     
           switch (section) {
-            case 'Play by play':
+            case Section.PlayByPlay:
               navigation.navigate(NavigationRoutes.DETAILS_STATS,{roundData,timeComponent});
             break;
-            case 'Team Stats':
-              navigation.navigate(NavigationRoutes.TEAM_STATS, {roundData, timeComponent});
-            break;
-            case 'Player Stats':
-              navigation.navigate(NavigationRoutes.PLAYER_STATS, {roundData, timeComponent});
-            break;
+            case Section.TeamStats:
+              navigation.navigate(NavigationRoutes.TEAM_STATS, { roundData, timeComponent });
+              break;
+              case Section.PlayerStats:
+                navigation.navigate(NavigationRoutes.PLAYER_STATS, { roundData, timeComponent });
+                break;
       
             default:
         
@@ -140,7 +147,7 @@ const TeamListScreen : React.FC<TeamListScreenProps> = ({ route }) => {
            <View style={styles.wrapItem}>
              <View style={{ flexDirection: 'row',}}>
               <PlayerList data={[item.left]} />
-              <PlayerListTwo data={[item.right]} />
+              {item.right && <PlayerListTwo data={[item.right]} />}
               </View> 
            </View> 
           

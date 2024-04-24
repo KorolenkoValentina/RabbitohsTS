@@ -110,8 +110,9 @@ export default function ProfileScreen({ navigation, route }: ProfileScreenProps)
 
     const handleSaveChanges = async () => {
         try {
-            const userId = await AsyncStorage.getItem(`userId_${email}`); 
-            const userData = await AsyncStorage.getItem(`userData_${email}`);
+            const userId = (await AsyncStorage.getItem(`userId_${email}`)) || ''; 
+            const userData = (await AsyncStorage.getItem(`userData_${email}`)) || '';
+
             const parsedUserData = JSON.parse(userData) || {};
             
             

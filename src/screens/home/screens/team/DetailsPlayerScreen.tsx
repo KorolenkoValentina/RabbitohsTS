@@ -6,28 +6,23 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
-  ImageBackground,
-  Image, 
+  ImageBackground, 
   TouchableOpacity
   
 } from 'react-native';
 
 import { colors } from '../../../../components/Colors';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
 import {  PlayerItem } from '../../../../components/types/types';
-import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
+import { NavigationRoutes, DetailsPlayerScreenRouteProps } from '../../../../components/types/NavigationTypes';
 
-
-const DetailsPlayerscreen: React.FC<{ route: any }> = ({ route }) => {
+const DetailsPlayerscreen: React.FC<DetailsPlayerScreenRouteProps> = ({ route, navigation }) => {
   const { item } = route.params as { item: PlayerItem };
-
-  const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
   
   const onItemPress = (item: PlayerItem) => {
     navigation.navigate(NavigationRoutes.VIEW, { item });
-  };
+};
 
-    const renderItem = ({item}) => {
+  const renderItem = ({ item }: { item: PlayerItem }) => {
 
       return (
         
