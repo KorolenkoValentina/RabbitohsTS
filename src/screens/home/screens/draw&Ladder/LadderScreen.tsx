@@ -16,20 +16,10 @@ import RoundModal from '../../components/RoundModal';
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import {ArrowUpIcon , ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons/ArrowIcons' 
-import { NavigationRoutes, RoundData, Team  } from '../../../../components/types';
+import { NavigationRoutes  } from '../../../../components/types/NavigationTypes';
+import { Team, LadderScreenProps } from '../../../../components/types/DrawLadderTypes';
 
-interface YearData {
-  year: string;
-  rounds: { [key: string]: RoundData };
-}
 
-interface LadderScreenProps {
-  route: {
-    params: {
-      mockBacksYears: YearData[];
-    };
-  };
-}
 const LadderScreen : React.FC<LadderScreenProps> = ({ route }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isRoundMenuOpen, setIsRoundMenuOpen] = useState<boolean>(false);

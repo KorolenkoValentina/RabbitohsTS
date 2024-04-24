@@ -15,7 +15,7 @@ import {
 import {colors} from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
-import {  NavigationRoutes } from '../../../../components/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 
 export default function  SignUpScreen (): JSX.Element {
   const [password, setPassword] = useState<string>('');

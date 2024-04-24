@@ -10,7 +10,7 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MomentsScreen from '../screens/home/screens/MomentsScreen';
 import { BellIcon } from '../components/icons/NavigationScreenIcons';
-import { NavigationRoutes } from '../components/types';
+import { NavigationRoutes } from '../components/types/NavigationTypes';
 
 
 

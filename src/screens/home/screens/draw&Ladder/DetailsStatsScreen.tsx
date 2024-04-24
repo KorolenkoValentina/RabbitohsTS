@@ -12,17 +12,11 @@ import {
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Switcher from '../../components/Switcher';
-import { NavigationRoutes, RoundData ,Section } from '../../../../components/types';
+import { NavigationRoutes} from '../../../../components/types/NavigationTypes';
+import {  DetailsStatsScreenProps, Section } from '../../../../components/types/DrawLadderTypes';
 import {ErrorIcon, RegbyBallIcon, GoalMadeIcon, RestartIcon, MetresIcon, LinesIcon, ArrowIcon, WhistleIcon } from '../../../../components/icons/DetailsStatsScreenIcons'
 
-interface DetailsStatsScreenProps {
-  route: {
-    params: {
-      roundData: RoundData;
-      timeComponent: JSX.Element;
-    };
-  };
-}
+
 
 const DetailsStatsScreen: React.FC<DetailsStatsScreenProps> = ({ route }) => {
 

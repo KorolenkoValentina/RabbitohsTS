@@ -14,16 +14,9 @@ import DualProgressBar from '../../components/DualProgressBar';
 import CircularProgressBar from '../../components/CircularProgressBar';
 import ProgressBar from '../../components/ProgressBar';
 import SemiCircleProgressBar from '../../components/SemiCircleProgressBar';
-import { NavigationRoutes, RoundData,Section } from '../../../../components/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 
-interface TeamStatsScreenProps {
-  route: {
-    params: {
-      roundData: RoundData;
-      timeComponent: JSX.Element;
-    };
-  };
-}
+import {TeamStatsScreenProps, Section  } from '../../../../components/types/DrawLadderTypes';
 
 const TeamStatsScreen: React.FC<TeamStatsScreenProps> = ({ route }) => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();

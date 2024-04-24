@@ -14,7 +14,8 @@ import {
 
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { NavigationRoutes, PlayerItem } from '../../../../components/types';
+import {  PlayerItem } from '../../../../components/types/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 
 
 const DetailsPlayerscreen: React.FC<{ route: any }> = ({ route }) => {
@@ -33,7 +34,7 @@ const DetailsPlayerscreen: React.FC<{ route: any }> = ({ route }) => {
         <View >
           <View style={styles.wrapItem}>
             <ImageBackground source={require('../../images/teamScreen/bg-player.png')}  style={styles.background}>
-              <Image source={item.image} style={styles.player}/>
+              <item.imageDetails/>
             </ImageBackground>
             <View style={styles.generalInfo}>
               <View style={styles.detailInfo}>
@@ -145,10 +146,10 @@ const styles = StyleSheet.create({
 
   },
 
-  player: {
-      width: 263, 
-      height: 255,
-  },
+  // player: {
+  //     width: 263, 
+  //     height: 255,
+  // },
 
   generalInfo:{
     position:'absolute',

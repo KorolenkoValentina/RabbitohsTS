@@ -9,21 +9,21 @@ import {
 } from 'react-native';
 
 
-import { createNativeStackNavigator, NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import TeamScreen from '../screens/home/screens/team/TeamScreen';
 import DetailsPlayerscreen from '../screens/home/screens/team/DetailsPlayerScreen';
 import PlayerInfoStatsScreen from '../screens/home/screens/team/PlayerInfoStats';
 import {colors} from '../components/Colors'
 import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationRoutes, TeamStackParamList  } from '../components/types';
+
+import { NavigationRoutes, TeamtScreenProps,TeamStackParamList } from '../components/types/NavigationTypes';
 
 
 type DetailsPlayerScreenRouteProps = NativeStackScreenProps<TeamStackParamList, NavigationRoutes.DETAILS_PLAYER>;
 type PlayerInfoStatsScreenRouteProps = NativeStackScreenProps<TeamStackParamList, NavigationRoutes.VIEW>;
 
-const TeamStack: React.FC = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<TeamStackParamList>>();
+const TeamStack: React.FC<TeamtScreenProps> = () => {
+ 
   
   const TeamStack = createNativeStackNavigator();
 
@@ -52,13 +52,13 @@ const TeamStack: React.FC = () => {
         
       <TeamStack.Screen 
       name={NavigationRoutes.DETAILS_PLAYER} component={DetailsPlayerscreen} 
-      options={({ route }: DetailsPlayerScreenRouteProps) => ({
+      options={({ route, navigation }: DetailsPlayerScreenRouteProps) => ({
         headerStyle: {
           backgroundColor: colors.green, 
         },
         headerBackVisible: false,
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.pop()}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <ArrowLeftIcon color={colors.white}/>
           </TouchableOpacity>
         ),
@@ -73,10 +73,10 @@ const TeamStack: React.FC = () => {
 
       <TeamStack.Screen 
       name={NavigationRoutes.VIEW} component={PlayerInfoStatsScreen} 
-      options={({ route }: PlayerInfoStatsScreenRouteProps) => ({
+      options={({ route, navigation }: PlayerInfoStatsScreenRouteProps) => ({
         headerBackVisible: false,
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.pop()}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <ArrowLeftIcon color={colors.black}/>
           </TouchableOpacity>
         ),

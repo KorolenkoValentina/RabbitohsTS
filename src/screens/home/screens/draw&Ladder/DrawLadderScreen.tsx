@@ -15,11 +15,12 @@ import {mockBacksYears} from '../../components/MockCommandsData'
 import { colors } from '../../../../components/Colors';
 import { useNavigation , NavigationProp} from '@react-navigation/native';
 import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIcons' 
-import { NavigationRoutes, RoundData  } from '../../../../components/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
+import { RoundData } from '../../../../components/types/DrawLadderTypes';
 import Kayo from '../../images/commands/kayo-sports.svg'
 import Nine from '../../images/commands/nine.svg'
 import Foxtel from '../../images/commands/foxtel.svg'
-
+import Location from '../../images/location.svg'
 
 
 const DrawLadderScreen : React.FC = () => {
@@ -59,7 +60,7 @@ const DrawLadderScreen : React.FC = () => {
         <View style={styles.wrapItem}>                   
           <Text style={styles.title}>{roundInfo}</Text>
           <View style={styles.wrapLocation}>
-            <Image source={require('../../images/location.png')}/>           
+            <Location/>         
             <Text style={styles.subtitle}>{roundData.location}</Text> 
           </View> 
           <Image source={require('../../images/teamScreen/linehorisontal.png')} style={{ alignSelf:'center'}}/>

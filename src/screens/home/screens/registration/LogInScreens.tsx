@@ -16,9 +16,9 @@ import { useNavigation , NavigationProp} from '@react-navigation/native';
 import {colors} from '../../../../components/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
-import {  UserData ,NavigationRoutes } from '../../../../components/types';
-
-
+import {  UserData } from '../../../../components/types/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
+import { saveSessionData , getSessionData} from '../../../../utils/storage';
 const LogInScreen: React.FC<{ route: any }> = ({ route }) => {
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -30,34 +30,39 @@ const LogInScreen: React.FC<{ route: any }> = ({ route }) => {
         setShowPassword(!showPassword);
     };
 
-    
 
     const handleLogin = async (): Promise<void> => {
         try {
             const userId = await AsyncStorage.getItem(`userId_${email}`);
-            if (!userId) {
-             Alert.alert('User not found. Please sign up.');
+                if (!userId) {
+                Alert.alert('User not found. Please sign up.');
                 return;
             }
-       
+            const sessionData = await getSessionData();
+
+   
+            if (sessionData) {
+    
+            navigation.navigate(NavigationRoutes.HOME);
+            return;
+            }
+
             const userData = await AsyncStorage.getItem(`userData_${email}`);
             const parsedUserData: UserData | null = JSON.parse(userData);
             console.log('User data from storage:', parsedUserData);
             if (parsedUserData.password === password) {
-                Alert.alert('Successful login!');
-            
-                await AsyncStorage.setItem('isLoggedIn', 'true');
-                await AsyncStorage.setItem('currentUser', JSON.stringify(parsedUserData));
+            Alert.alert('Successful login!');
+            await saveSessionData(email, userData);
+            await AsyncStorage.setItem('currentUser', JSON.stringify(parsedUserData));
                 console.log('Logged in user:', parsedUserData.firstName); 
-                navigation.navigate(NavigationRoutes.HOME);
-            } else {
+            navigation.navigate(NavigationRoutes.HOME);
+            }   else {
                 Alert.alert('Incorrect password!');
-            }
-        } catch (error) {
+                }
+            } catch (error) {
             console.error('Error during login:', error);
             Alert.alert('Error during login. Please try again.');
         }
-    
     };
     
     

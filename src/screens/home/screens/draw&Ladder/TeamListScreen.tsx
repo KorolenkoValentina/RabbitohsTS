@@ -11,7 +11,8 @@ import {
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Switcher from '../../components/Switcher';
-import { NavigationRoutes, RoundData,Section ,Player} from '../../../../components/types';
+import { NavigationRoutes} from '../../../../components/types/NavigationTypes';
+import { TeamListScreenProps, Section , Player } from '../../../../components/types/DrawLadderTypes';
 
 const PlayerList = ({ data }: { data: Player[] }) => {
   return (
@@ -46,17 +47,6 @@ const PlayerListTwo = ({ data }: { data: Player[] }) => {
     </View>
   );
 };
-
-interface TeamListScreenProps {
-  route: {
-    params: {
-      roundData: RoundData;
-      timeComponent: JSX.Element;
-    };
-  };
-}
-
-
 
 const TeamListScreen : React.FC<TeamListScreenProps> = ({ route }) => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();

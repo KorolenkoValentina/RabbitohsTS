@@ -13,11 +13,11 @@ import { colors } from '../../../components/Colors';
 import  CarouselVideoScreen from '../components/CarouselVideo';
 import  CarouselScreen from '../components/Carousel';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { NavigationRoutes } from '../../../components/types';
+
 import News from '../../../screens/home/images/homeScreen/news-1.svg'
 import News2 from '../../../screens/home/images/homeScreen/news-2.svg'
 import News3 from '../../../screens/home/images/homeScreen/news-3.svg'
-
+import { NavigationRoutes } from '../../../components/types/NavigationTypes'
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
@@ -26,7 +26,7 @@ const HomeScreen: React.FC = () => {
     navigation.navigate(NavigationRoutes.ARTICLE);
   };
 
-  const renderItem  = ()=>{
+  const renderItem = (): JSX.Element => {
     return (
       <View style={styles.container}>
         <CarouselScreen/>

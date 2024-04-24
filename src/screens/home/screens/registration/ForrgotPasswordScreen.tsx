@@ -14,8 +14,7 @@ import {
 
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import {colors} from '../../../../components/Colors';
-import {  NavigationRoutes } from '../../../../components/types';
-
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 
 export default function ForgotPasswordScreen(): JSX.Element {
     const [email, setEmail] = useState<string>('');

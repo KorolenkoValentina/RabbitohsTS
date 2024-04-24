@@ -16,7 +16,7 @@ import YearModal from '../../components/YearModal';
 import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIcons' 
 import {RegbyBallIcon, AttackBallIcon} from '../../../../components/icons/DetailsStatsScreenIcons' 
 import {AppearancesIcon, KickingIcon , PassingIcon , DefenceIcon ,RunningMetresIcon, FantasyIcon } from '../../../../components/icons/PlayerInfoStatsIcons' 
-import { NavigationRoutes,PlayerItem } from '../../../../components/types';
+import { PlayerItem } from '../../../../components/types/types';
 
 
 
@@ -268,7 +268,7 @@ const PlayerInfoStatsScreen: React.FC<{ route: any }> = ({ route }) => {
         <Switcher
                 sections={['Season stats', 'Round stats', 'Latest news']}
                 activeSection={activeSection}
-                onSectionChange={(section) => {
+                onSectionChange={(section: string) => {
                     setActiveSection(section);
                     // Handle section change here, you can add additional logic if needed
                     console.log('Selected section:', section);

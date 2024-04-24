@@ -23,17 +23,9 @@ import Logo from '../../images/teamScreen/logo.svg'
 import Kayo from '../../images/commands/kayo-sports.svg'
 import Nine from '../../images/commands/nine.svg'
 import Foxtel from '../../images/commands/foxtel.svg'
-import { NavigationRoutes, RoundData  } from '../../../../components/types';
-
-interface MatchScreenProps {
-  route: {
-    params: {
-      roundData: RoundData;
-      roundInfo: string;
-      timeComponent: JSX.Element;
-    };
-  };
-}
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
+import { RoundData, MatchScreenProps } from '../../../../components/types/DrawLadderTypes';
+import Location from '../../images/location.svg'
 
 const MatchScreen: React.FC<MatchScreenProps> = ({ route }) => {
   
@@ -106,7 +98,7 @@ const MatchScreen: React.FC<MatchScreenProps> = ({ route }) => {
           </View>
           <Image source={require('../../images/teamScreen/linehorisontal.png')} style={{ alignSelf:'center'}}/>
           <View style={styles.wrapLocation}>
-            <Image source={require('../../images/location.png')}/>           
+            <Location/>
             <Text style={styles.subtitle}>{roundData.location}</Text> 
           </View>
           

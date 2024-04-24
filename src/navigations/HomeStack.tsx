@@ -12,7 +12,7 @@ import HomeScreen from '../screens/home/screens/HomeScreen';
 import ArticleScreen from '../screens/home/screens/ArticleScreen'
 import { BellIcon } from '../components/icons/NavigationScreenIcons';
 
-import { NavigationRoutes } from '../components/types';
+import { NavigationRoutes } from '../components/types/NavigationTypes';
 
 const HomeStack = (): JSX.Element => {
     

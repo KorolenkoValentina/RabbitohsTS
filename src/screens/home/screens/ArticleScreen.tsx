@@ -11,7 +11,7 @@ import {
 
 import { colors } from '../../../components/Colors';
 
-import { ArticleData } from '../../../components/types';
+import { ArticleData } from '../../../components/types/types';
 import ArticleImage from '../images/videoArticle/image-3.svg'
 import Logo from '../images/videoArticle/logo.svg'
 import ArticleImage2 from '../images/videoArticle/image-4.svg'

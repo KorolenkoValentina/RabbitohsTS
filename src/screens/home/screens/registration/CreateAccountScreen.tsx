@@ -19,7 +19,10 @@ import {colors} from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
-import {  UserData , NavigationRoutes } from '../../../../components/types';
+import {  UserData  } from '../../../../components/types/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
+
+import { validatePassword, validateEmail  } from '../../../../utils/storage';
 
 export default function SignUpScreen(): JSX.Element {
   const [firstName, setFirstName] = useState<string>('');
@@ -41,11 +44,13 @@ export default function SignUpScreen(): JSX.Element {
       Alert.alert('Please fill in all required fields.');
       return;
     }
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
-
-
-    if (!passwordRegex.test(password)) {
-      Alert.alert('Password must be at least 8  characters long and contain both letters and numbers.');
+    if (!validateEmail(email)) {
+      Alert.alert('Invalid email');
+      
+    return;
+  }
+    if (!validatePassword(password)) {
+      Alert.alert('Password must be at least 8 characters long\nand contain both letters and numbers.');
       return;
     }
   
@@ -71,6 +76,7 @@ export default function SignUpScreen(): JSX.Element {
       Alert.alert('Error creating account. Please try again.');
     }
   };
+  
 
   const handlePasswordChange = (text: string): void => {
     setPassword(text);

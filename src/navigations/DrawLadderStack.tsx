@@ -8,8 +8,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps  } from '@react-navigation/native-stack';
+
+import { createNativeStackNavigator, NativeStackScreenProps  } from '@react-navigation/native-stack';
 import DrawLadderScreen from '../screens/home/screens/draw&Ladder/DrawLadderScreen';
 import LadderScreen from '../screens/home/screens/draw&Ladder/LadderScreen';
 import MatchScreen from '../screens/home/screens/draw&Ladder/MatchScreen';
@@ -20,14 +20,15 @@ import PayerStatsScreen from '../screens/home/screens/draw&Ladder/PlayerStatsScr
 import TeamStatsScreen from '../screens/home/screens/draw&Ladder/TeamStatsScreen';
 import {colors} from '../components/Colors'
 import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
-import { NavigationRoutes,DrawLadderStackParamList } from '../components/types';
+import { NavigationRoutes } from '../components/types/NavigationTypes';
+import {DrawLadderStackParamListScreenProps, DrawLadderStackParamList } from '../components/types/NavigationTypes';
 
 
 
 type DetailsStatsScreenRouteProps = NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.DETAILS_STATS>;
 
-const DrawLadderStack: React.FC = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<DrawLadderStackParamList>>();
+const DrawLadderStack: React.FC<DrawLadderStackParamListScreenProps> = () => {
+  
   const DrawLadderStack = createNativeStackNavigator();
 
   const LogoIcon = () => (
@@ -64,13 +65,13 @@ const DrawLadderStack: React.FC = () => {
 
       <DrawLadderStack.Screen 
         name={NavigationRoutes.MATCH} component={MatchScreen} 
-        options={() => ({
+        options={({ navigation }) => ({
           headerStyle: {
             backgroundColor: colors.green, 
           },
           headerBackVisible: false,
           headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.pop()}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <ArrowLeftIcon color={colors.white}/>
           </TouchableOpacity>
           ),
@@ -83,10 +84,10 @@ const DrawLadderStack: React.FC = () => {
       />
       <DrawLadderStack.Screen 
         name={NavigationRoutes.ARTICLE} component={ArticleScreen} 
-        options={() => ({
+        options={({ navigation }) => ({
           headerBackVisible: false,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <ArrowLeftIcon color={colors.black}/>
             </TouchableOpacity>
           ),})}
@@ -94,10 +95,10 @@ const DrawLadderStack: React.FC = () => {
 
       <DrawLadderStack.Screen 
         name={NavigationRoutes.DETAILS_STATS} component={DetailsStatsScreen} 
-        options={({ route }: DetailsStatsScreenRouteProps) => ({
+        options={({ route, navigation }: DetailsStatsScreenRouteProps) => ({
           headerBackVisible: false,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <ArrowLeftIcon color={colors.black}/>
             </TouchableOpacity>
           ),
@@ -116,10 +117,10 @@ const DrawLadderStack: React.FC = () => {
 
       <DrawLadderStack.Screen 
         name={NavigationRoutes.TEAM_LIST} component={TeamListScreen} 
-        options={({ route }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_LIST>) => ({
+        options={({ route, navigation }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_LIST>) => ({
           headerBackVisible: false,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <ArrowLeftIcon color={colors.black}/>
             </TouchableOpacity>
           ),
@@ -138,10 +139,10 @@ const DrawLadderStack: React.FC = () => {
       />
        <DrawLadderStack.Screen 
         name={NavigationRoutes.TEAM_STATS} component={TeamStatsScreen} 
-        options={({ route }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_STATS>) => ({
+        options={({ route , navigation}: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.TEAM_STATS>) => ({
           headerBackVisible: false,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <ArrowLeftIcon color={colors.black}/>
             </TouchableOpacity>
           ),
@@ -160,10 +161,10 @@ const DrawLadderStack: React.FC = () => {
       />
       <DrawLadderStack.Screen 
         name={NavigationRoutes.PLAYER_STATS} component={PayerStatsScreen} 
-        options={({ route }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.PLAYER_STATS>) => ({
+        options={({ route, navigation }: NativeStackScreenProps<DrawLadderStackParamList, NavigationRoutes.PLAYER_STATS>) => ({
           headerBackVisible: false,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <ArrowLeftIcon color={colors.black}/>
             </TouchableOpacity>
           ),

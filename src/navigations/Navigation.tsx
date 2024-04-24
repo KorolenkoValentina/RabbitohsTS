@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import 'react-native-gesture-handler';
 
 import {colors} from '../components/Colors'
@@ -14,10 +14,8 @@ import AccountStack from './AccountStack';
 import SignUpScreen from '../screens/home/screens/registration/CreateAccountScreen';
 import LogInScreen from '../screens/home/screens/registration/LogInScreens';
 import ForrgotPasswordScreen from '../screens/home/screens/registration/ForrgotPasswordScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect} from '@react-navigation/native';
-import { NavigationRoutes } from '../components/types';
-
+import { NavigationRoutes } from '../components/types/NavigationTypes';
+import {getSessionData} from '../utils/storage'
 
 import {NewsIcon, MomentsIcon, DrawLadderIcon, TeamIcon, AccountIcon } from '../components/icons/NavigationScreenIcons'
 
@@ -85,44 +83,36 @@ const  MyStack=()=> {
     screenOptions={{
       headerShown: false,
     }}>
-      <Stack.Screen name="New" component={MyTabs} />
-      <Stack.Screen name="Moment" component={MomentsStack} />
-      <Stack.Screen name="Draw & Ladders" component={DrawLadderStack} />
-      <Stack.Screen name="Teams" component={TeamStack} />
-      <Stack.Screen name="Accounts" component={AccountStack} />
+      <Stack.Screen name="NewsStack" component={MyTabs} />
+      <Stack.Screen name="MomentStack" component={MomentsStack} />
+      <Stack.Screen name="DrawLadderStack" component={DrawLadderStack} />
+      <Stack.Screen name="TeamStack" component={TeamStack} />
+      <Stack.Screen name="AccountStack" component={AccountStack} />
     </Stack.Navigator>
   
   );
 };
 
-const Navigator: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Navigator: React.FC<{ navigation: any }> = ({ navigation }) => {
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const checkLoginStatus = async () => {
-  //       const value = await AsyncStorage.getItem('isLoggedIn');
-  //       console.log('Before Login - isLoggedIn value:', value);
-  //       setIsLoggedIn(value === 'true');
-  //     };
-
-  //     checkLoginStatus();
-  //   }, [])
-  // );
- 
   useEffect(() => {
-    checkAuthStatus();
+    
+    const checkSession = async () => {
+      const sessionData = await getSessionData();
+      if (sessionData && sessionData.isLoggedIn) {
+        navigation.navigate(NavigationRoutes.HOME); 
+
+      } else {
+        navigation.navigate(NavigationRoutes.LOG_IN);
+      }
+    };
+    checkSession();
   }, []);
-
-  const checkAuthStatus = async () => {
-    const userToken = await AsyncStorage.getItem('isLoggedIn');
-    setIsLoggedIn(!!userToken); 
-  };
-
+ 
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={isLoggedIn ? NavigationRoutes.HOME : NavigationRoutes.LOG_IN}
+      <Stack.Navigator 
       screenOptions={{
         headerShown: false,
       }}>

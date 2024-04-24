@@ -11,19 +11,12 @@ import {
 import Switcher from '../../components/Switcher';
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { NavigationRoutes, RoundData,Section , Player} from '../../../../components/types';
+import { NavigationRoutes} from '../../../../components/types/NavigationTypes';
 
-interface PayerStatsScreenProps {
-  route: {
-    params: {
-      roundData: RoundData;
-      timeComponent: JSX.Element;
-    };
-  };
-}
+import { PlayerStatsScreenProps, Section , Player } from '../../../../components/types/DrawLadderTypes';
 
 
-const PayerStatsScreen: React.FC<PayerStatsScreenProps> = ({ route }) => {
+const PayerStatsScreen: React.FC<PlayerStatsScreenProps> = ({ route }) => {
   const [activeSection, setActiveSection] = useState('Player Stats')
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();

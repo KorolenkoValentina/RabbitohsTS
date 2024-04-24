@@ -1,19 +1,18 @@
 import React,{useState}   from 'react';
-import { View, FlatList, Image, TouchableOpacity, Modal, StyleSheet, Text, ImageSourcePropType } from 'react-native';
+import { View, FlatList, TouchableOpacity, Modal, StyleSheet, Text} from 'react-native';
 import { mockMomentsData } from '../components/MockMomentsData';
 import { colors } from '../../../components/Colors';
-import { MomentItem } from '../../../components/types';
-
+import { MomentItem } from '../../../components/types/types';
 
 const MomentsScreen: React.FC = () => {
   
-  const [selectedImage, setSelectedImage] = useState<ImageSourcePropType | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any| null>(null);
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const renderItem = ({ item }: { item: MomentItem}) => (
     <TouchableOpacity onPress={() => { setSelectedImage(item.image); setModalVisible(true); }}>
-      <Image source={item.image} style={styles.imageThumbnail} />
+      <item.image style={styles.imageThumbnail} />
       
     </TouchableOpacity>
   );
@@ -31,8 +30,10 @@ const MomentsScreen: React.FC = () => {
           <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
             <Text style={styles.closeText}>Close</Text>
           </TouchableOpacity>
-          
-          <Image source={selectedImage} style={styles.fullImage} resizeMode="contain" />
+         
+          {selectedImage} 
+      
+          {/* <Image source={selectedImage} style={styles.fullImage} resizeMode="contain" /> */}
         </View>
       </Modal>
     </View>

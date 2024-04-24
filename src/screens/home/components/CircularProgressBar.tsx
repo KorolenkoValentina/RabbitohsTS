@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
 import Svg, { Circle, G } from 'react-native-svg';
 import { colors } from '../../../components/Colors';
-import { CircularProgressBarProps } from '../../../components/types';
+import { CircularProgressBarProps } from '../../../components/types/ComponentTypes';
 
 const CircularProgressBar : React.FC<CircularProgressBarProps> = ({ percentage1, percentage2, radius, strokeWidth, color1, color2,backgroundColor, label1, label2 }) => {
   const circleCircumference = 2 * Math.PI * radius;
@@ -15,7 +15,7 @@ const CircularProgressBar : React.FC<CircularProgressBarProps> = ({ percentage1,
     animateCircle(strokeDashoffset2, percentage2);
   }, [percentage1, percentage2]);
 
-  const animateCircle = (strokeDashoffset, percentage) => {
+  const animateCircle = (strokeDashoffset: Animated.Value, percentage: number)=> {
     Animated.timing(strokeDashoffset, {
       toValue: circleCircumference - (circleCircumference * percentage) / 100,
       duration: 1000,

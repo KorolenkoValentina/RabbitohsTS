@@ -15,8 +15,8 @@ import {
 import {mockBacksData, mockForwardData} from '../../components/MockData'
 import { colors } from '../../../../components/Colors';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { NavigationRoutes , PlayerItem} from '../../../../components/types';
-
+import {  PlayerItem} from '../../../../components/types/types';
+import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
 
 
 interface PlayerListProps {
@@ -49,7 +49,10 @@ const PlayerList: React.FC<PlayerListProps> = ({ data, item }) => {
             <View style={styles.wrapContent}>
               <Text style={styles.titleContent}>{item.fullName}</Text>
               <Text style={styles.subtitleContent}>{item.type}</Text>
-            
+              
+                {/* <item.image style={styles.player}/> */}
+                
+                {/* <Image source={{ uri: `${item.image}` }} style={styles.player} /> */}
             <Image source={item.image} style={styles.player}/>
           </View>
           </ImageBackground>
