@@ -32,7 +32,7 @@ const LadderScreen : React.FC<LadderScreenProps> = ({ route }) => {
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
 
-  
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -135,9 +135,10 @@ const LadderScreen : React.FC<LadderScreenProps> = ({ route }) => {
       sections={['Draw', 'Ladder']}
       activeSection={selectedSection}
       onSectionChange={(section: string) => {
+       setSelectedSection(section);
         if (section === 'Draw') {
-            setSelectedSection('Draw');
-            navigation.navigate({name:NavigationRoutes.DRAW_LADDER, params:{}});
+            
+            navigation.navigate({ name: NavigationRoutes.DRAW_LADDER, params: { activeSection: 'Draw' } });
         } 
       }}
       />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import {
   View,
   Text,
@@ -11,24 +11,36 @@ import {
 } from 'react-native';
 import Switcher from '../../components/Switcher';
 import YearModal from '../../components/YearModal';
+
 import {mockBacksYears} from '../../components/MockCommandsData'
 import { colors } from '../../../../components/Colors';
 import { useNavigation , NavigationProp} from '@react-navigation/native';
 import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIcons' 
 import { NavigationRoutes } from '../../../../components/types/NavigationTypes';
-import { RoundData } from '../../../../components/types/DrawLadderTypes';
+import { RoundData, DrawLadderScreenProps } from '../../../../components/types/DrawLadderTypes';
 import Kayo from '../../images/commands/kayo-sports.svg'
 import Nine from '../../images/commands/nine.svg'
 import Foxtel from '../../images/commands/foxtel.svg'
 import Location from '../../images/location.svg'
 
 
-const DrawLadderScreen : React.FC = () => {
+const DrawLadderScreen : React.FC<DrawLadderScreenProps> = ({route}) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [selectedYear, setSelectedYear] = useState<string>('2024');
-  const [selectedSection, setSelectedSection] = useState<string>('Draw');
+  const [selectedSection, setSelectedSection]   = useState<string>('Draw');
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
+
+  
+  const { activeSection } = route.params || {};
+  
+  useEffect(() => {
+    if (activeSection) {
+      setSelectedSection(activeSection);
+    }
+  }, [activeSection]);
+
+
 
   const handleMatch = (roundData: RoundData, roundInfo: string, timeComponent: JSX.Element) => {
     navigation.navigate(NavigationRoutes.MATCH, { roundData, roundInfo, timeComponent });
@@ -104,9 +116,10 @@ const DrawLadderScreen : React.FC = () => {
       sections={['Draw', 'Ladder']}
       activeSection={selectedSection}
       onSectionChange={(section: string) => {
+       setSelectedSection(section);
         if (section === 'Ladder') {
-            setSelectedSection('Ladder');
-            navigation.navigate(NavigationRoutes.LADDER, { mockBacksYears});
+            
+            navigation.navigate(NavigationRoutes.LADDER, { mockBacksYears, activeSection: 'Ladder' });
         } 
       }}
     />

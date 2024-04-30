@@ -25,7 +25,8 @@ export enum NavigationRoutes {
     PURCHASES = 'Purchases',
     MY_BENEFITS='My Benefits',
     REGISTRATIONS='Registrations ',
-    NOTIFICATIONS='Notifications'
+    NOTIFICATIONS='Notifications',
+    LATEST_NEWS='Latest News'
 
 }
 
@@ -74,13 +75,15 @@ export type TeamStackParamList = {
   [NavigationRoutes.TEAMS]: undefined;
   [NavigationRoutes.DETAILS_PLAYER]: RouteParams;
   [NavigationRoutes.VIEW]: RouteParams;
-};
+  [NavigationRoutes.LATEST_NEWS]: RouteParams;
+}
 
 type TeamScreenNavigationProp = NativeStackNavigationProp<TeamStackParamList>;
 
 export interface TeamScreenProps {
   navigation: TeamScreenNavigationProp;
 }
+
 
 export interface ProfileScreenProps {
     navigation: any;
@@ -92,6 +95,16 @@ export  interface GenderSelectionScreenProps {
     route: any;
 }
 export type DetailsPlayerScreenRouteProps = {
+  navigation: any;
+  route: any; 
+};
+
+export type LatestNewsScreenRouteProps = {
+  navigation: any;
+  route: any; 
+};
+
+export type PlayerInfoStatsScreenRouteProps = {
   navigation: any;
   route: any; 
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -17,16 +17,24 @@ import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIc
 import {RegbyBallIcon, AttackBallIcon} from '../../../../components/icons/DetailsStatsScreenIcons' 
 import {AppearancesIcon, KickingIcon , PassingIcon , DefenceIcon ,RunningMetresIcon, FantasyIcon } from '../../../../components/icons/PlayerInfoStatsIcons' 
 import { PlayerItem } from '../../../../components/types/types';
+import { NavigationRoutes, PlayerInfoStatsScreenRouteProps } from '../../../../components/types/NavigationTypes';
 
 
 
-const PlayerInfoStatsScreen: React.FC<{ route: any }> = ({ route }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [selectedYear, setSelectedYear] = useState('2024');
-    const [activeSection, setActiveSection] = useState('Season stats');
+const PlayerInfoStatsScreen: React.FC<PlayerInfoStatsScreenRouteProps> = ({ route, navigation }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const [selectedYear, setSelectedYear] = useState<string>('2024');
+    const [selectedSection, setSelectedSection]  = useState<string>('Season stats')
 
     const { item } = route.params as { item: PlayerItem };
-
+    const { activeSection } = route.params || {};
+  
+    useEffect(() => {
+      if (activeSection) {
+        setSelectedSection(activeSection);
+      }
+    }, [activeSection]);
+  
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -258,21 +266,15 @@ const PlayerInfoStatsScreen: React.FC<{ route: any }> = ({ route }) => {
 
       <SafeAreaView style={styles.container}>
         
-        {/* <Switcher
-            sections={['Season stats', 'Round stats', 'Latest news']}
-                onSectionChange={(section) => {
-                    console.log('Selected section:', section);
-       
-            }}
-        /> */}
         <Switcher
-                sections={['Season stats', 'Round stats', 'Latest news']}
-                activeSection={activeSection}
+                sections={['Season stats', 'Latest news']}
+                activeSection={selectedSection}
                 onSectionChange={(section: string) => {
-                    setActiveSection(section);
-                    // Handle section change here, you can add additional logic if needed
-                    console.log('Selected section:', section);
-                }}
+                    setSelectedSection(section);
+                  if (section === 'Latest news') {
+                    navigation.navigate({name:NavigationRoutes.LATEST_NEWS, params:{item,  activeSection: 'Latest news'}});
+                } 
+            }}
             />
    
         <FlatList

@@ -13,6 +13,7 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 import TeamScreen from '../screens/home/screens/team/TeamScreen';
 import DetailsPlayerscreen from '../screens/home/screens/team/DetailsPlayerScreen';
 import PlayerInfoStatsScreen from '../screens/home/screens/team/PlayerInfoStats';
+import LatestNewsScreen from '../screens/home/screens/team/LatestNewsScreen';
 import {colors} from '../components/Colors'
 import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
 import { NavigationRoutes, TeamScreenProps, RouteParams  } from '../components/types/NavigationTypes';
@@ -69,6 +70,23 @@ const TeamStack: React.FC<TeamScreenProps> = () => {
 
       <TeamStack.Screen 
       name={NavigationRoutes.VIEW} component={PlayerInfoStatsScreen} 
+      options={({ route, navigation }: { route: { params?: RouteParams }, navigation: any }) => ({
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <ArrowLeftIcon color={colors.black}/>
+          </TouchableOpacity>
+        ),
+        headerTitle: () => (
+          <View style={styles.wrap}>
+            <Text style={[styles.title, { color: 'black' }]}>{route.params?.item?.fullName}</Text>
+            <Text style={[styles.subtitle, { color: 'black' }]}>{route.params?.item?.type}</Text>
+          </View>
+        ),
+      })}/>
+
+<TeamStack.Screen 
+      name={NavigationRoutes.LATEST_NEWS} component={LatestNewsScreen} 
       options={({ route, navigation }: { route: { params?: RouteParams }, navigation: any }) => ({
         headerBackVisible: false,
         headerLeft: () => (

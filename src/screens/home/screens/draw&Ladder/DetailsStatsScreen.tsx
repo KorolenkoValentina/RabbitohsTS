@@ -18,12 +18,12 @@ import {ErrorIcon, RegbyBallIcon, GoalMadeIcon, RestartIcon, MetresIcon, LinesIc
 
 
 
-const DetailsStatsScreen: React.FC<{ route: any }> = ({ route }) => {
+const DetailsStatsScreen: React.FC<DetailsStatsScreenProps > = ({ route }) => {
 
   const navigation = useNavigation<NavigationProp<Record<string, object>, NavigationRoutes>>();
 
   const [activeSection, setActiveSection] = useState('Play by play');
-  const { roundData, timeComponent } = route.params;
+  const { roundData, timeComponent } = route!.params;
   const { teams } = roundData ;
   const team1 = teams[0];
   const team2 = teams[1];

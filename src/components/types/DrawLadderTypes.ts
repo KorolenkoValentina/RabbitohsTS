@@ -2,7 +2,7 @@
 
 
 export interface DetailsStatsScreenProps {
-  route: {
+  route?: {
     params: {
       roundData: RoundData;
       timeComponent: JSX.Element;
@@ -22,6 +22,11 @@ export interface LadderScreenProps {
     };
   };
 }
+
+export interface DrawLadderScreenProps {
+  route?: any
+}
+
 
 export interface MatchScreenProps {
   route: {

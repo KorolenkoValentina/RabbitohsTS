@@ -92,12 +92,15 @@
 // export default  Switcher
 
 
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../../components/Colors';
 import { SwitcherProps } from '../../../components/types/ComponentTypes';
 
-const Switcher: React.FC<SwitcherProps> = ({ sections, activeSection, onSectionChange }) => {
+
+const Switcher: React.FC<SwitcherProps> = ({ sections, activeSection, onSectionChange}) => {
+    
+   
 
     return (
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
@@ -139,17 +142,17 @@ const Switcher: React.FC<SwitcherProps> = ({ sections, activeSection, onSectionC
 
 const styles = StyleSheet.create({
     sectionSwitcher: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: 'row',        
         marginLeft: 25,
         marginVertical: 20,
         backgroundColor: colors.white,
         borderRadius: 12,
         height: 50,
         
+        
     },
     sectionButton: {
-        paddingHorizontal: 62,
+        width:165,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -163,6 +166,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: colors.extraDarkGrey,
+
     },
     activeSectionText: {
         color: colors.white,

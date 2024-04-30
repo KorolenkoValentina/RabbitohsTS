@@ -12,6 +12,7 @@ export interface SwitcherProps {
     sections: string[];
     activeSection: string;
     onSectionChange: (section: string) => void;
+   
 }
 
 
